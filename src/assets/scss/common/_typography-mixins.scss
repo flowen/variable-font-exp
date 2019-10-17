@@ -1,0 +1,147 @@
+$primary-font: 'Work sans';
+$font-recursive: 'Recursive';
+$font-source: 'Source Sans Variable';
+$font-graduate: 'Graduate';
+
+$heading-font: $primary-font;
+
+$fs-xs: 1.2vmax;
+$fs-sm: 1.8vmax;
+$fs-base: 2.4vmax;
+$fs-md: 3.2vmax;
+$fs-lg: 5.4vmax;
+$fs-xl: 7.2vmax;
+
+@mixin font-base {
+  font-family: $primary-font;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  font-size: $fs-base;
+  line-height: 1.5;
+}
+
+@mixin font-heading {
+  margin: 0 0 $sp-md;
+  font-family: $heading-font;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 1.2;
+  color: $color-heading;
+
+  @include tablet-landscape {
+    margin-top: $sp-md;
+    margin-bottom: $sp-sm;
+  }
+
+  @include desktop {
+    margin-top: $sp-lg;
+    margin-bottom: $sp-md;
+  }
+}
+
+@mixin font-h1 {
+  font-size: $fs-lg;
+  color: $color-yellow;
+}
+
+@mixin font-h2 {
+  font-size: $fs-md;
+  color: $color-purple;
+}
+
+@mixin font-h3 {
+  font-size: $fs-sm;
+}
+
+@mixin font-h4 {
+  font-size: $fs-sm;
+  font-weight: 400;
+}
+
+@mixin font-lead {
+  font-weight: 400;
+  font-style: normal;
+  font-size: $fs-base;
+  line-height: 1/16 * 25;
+
+  @include mobile-only {
+    font-size: $fs-sm;
+  }
+
+  @include tablet-portrait {
+    font-size: $fs-sm;
+  }
+}
+
+@mixin font-strong {
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin font-small {
+  font-size: $fs-base;
+  line-height: 1/16 * 20;
+}
+
+@mixin underline($color-border: $color-primary) {
+  display: block;
+  position: relative;
+  padding-bottom: $sp-sm;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw * (1/32);
+    border-bottom: 3px solid $color-border;
+  }
+}
+
+@mixin dropcap {
+  @include font-title;
+  float: left;
+  margin: 0.3em 4px 0 0;
+  line-height: 0.55;
+  text-transform: uppercase;
+
+  @include tablet-portrait {
+    margin-top: 0.25em;
+  }
+}
+
+// a helper functions for the fluid-type mixin below
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+/*
+  makes the font-size of an element fluid between a clamp of viewport width
+
+  $min-vw: minimum viewport width
+  $max-vw: maximum viewport width
+  $min-font-size: minimum font-size @ minimum width
+  $max-font-size: maximum font-size @ maximum width
+ */
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    & {
+      font-size: $min-font-size;
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(
+          #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+            ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+        );
+      }
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+      }
+    }
+  }
+}

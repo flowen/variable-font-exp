@@ -1,0 +1,85 @@
+@supports (font-variation-settings: 'wght' 100) {
+  @font-face {
+    font-display: swap;
+    font-family: $font-recursive;
+    font-kerning: normal;
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: 300 900;
+    src: local('Recursive Mono Casual B'),
+      url('/src/assets/fonts/rec-mono_xprn_wght_slnt_ital--2019_09_30.woff2')
+        format('woff2-variations');
+  }
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  $min_width: 320px;
+  $max_width: 1000px;
+  $min_font: 16px;
+  $max_font: 24px;
+  @include fluid-type($min_width, $max_width, $min_font, $max_font);
+}
+
+p {
+  margin: 0 0 $sp-md;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include tablet-landscape {
+    margin-bottom: $sp-lg;
+  }
+}
+
+strong {
+  @include font-strong;
+}
+
+sub,
+sup {
+  font-size: 50%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -1em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
+  @include font-heading;
+}
+
+h1,
+.h1 {
+  @include font-h1;
+}
+h2,
+.h2 {
+  @include font-h2;
+}
+h3,
+.h3 {
+  @include font-h3;
+}
+h4,
+.h4 {
+  @include font-h4;
+}

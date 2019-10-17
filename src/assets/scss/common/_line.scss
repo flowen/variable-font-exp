@@ -1,0 +1,24 @@
+.line {
+  $offset: 4px;
+  line-height: 1;
+  overflow: hidden;
+  margin: #{-$offset * 2} 0 0 #{-$offset};
+  padding: 0 $offset $offset 0;
+
+  .word,
+  .char {
+    will-change: transform;
+  }
+
+  .splitting & .word,
+  .splitting & .char {
+    transition: transform $d-slow $ease-out;
+    transition-delay: calc(0.04s * (0.25 * var(--word-index) + var(--word-index)));
+    transform: translateY(105%);
+  }
+
+  .is-inview & .word,
+  .is-inview & .char {
+    transform: translateY(0);
+  }
+}
