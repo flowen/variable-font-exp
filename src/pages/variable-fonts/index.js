@@ -9,18 +9,14 @@ const VariableFonts = () => {
   const [normalizedCoords, setNormalizedCoords] = useState({ x: 0, y: 0 })
   const wght200900 = map(normalizedCoords.x, 0, 1, 200, 900)
 
-  const XOPQ = map(normalizedCoords.x, 0, 1, 40, 200),
-    XTRA = map(normalizedCoords.x, 0, 1, 100, 800),
-    OPSZ = map(normalizedCoords.x, 0, 1, 8, 16),
-    GRAD = map(normalizedCoords.x, 0, 1, 0, 20),
-    YTRA = map(normalizedCoords.x, 0, 1, 750, 850),
-    CNTR = map(normalizedCoords.x, 0, 1, 0, 100),
-    YOPQ = map(normalizedCoords.x, 0, 1, 100, 800),
-    SERF = map(normalizedCoords.x, 0, 1, 0, 50),
-    YTAS = map(normalizedCoords.x, 0, 1, 0, 30),
-    YTLC = map(normalizedCoords.x, 0, 1, 650, 750),
-    YTDE = map(normalizedCoords.x, 0, 1, 0, 50),
-    SELE = map(normalizedCoords.x, 0, 1, -20, 0)
+  // these are all mapped within the bounds
+  const settingsRecursive = {
+    MONO: map(normalizedCoords.x, 0, 1, 0, 1),
+    XPRN: map(normalizedCoords.x, 0, 1, 0, 1),
+    WGHT: map(normalizedCoords.x, 0, 1, 300, 900),
+    SLNT: map(normalizedCoords.x, 0, 1, -15, 0),
+    ITAL: map(normalizedCoords.x, 0, 1, 0, 1),
+  }
 
   useLayoutEffect(() => {
     function getRect() {
@@ -60,7 +56,7 @@ const VariableFonts = () => {
       >
         <h1>Variable Fonts</h1>
 
-        <p>
+        {/* <p>
           {`x: ${mousePosition.x}px`}
           <br />
           {`y: ${mousePosition.y}px`}
@@ -70,46 +66,67 @@ const VariableFonts = () => {
           {`normalize y: ${rect ? normalizedCoords.y : null}`}
           <br />
           {`map: ${wght200900}`}
-        </p>
-
-        <h3>Font: Graduate</h3>
-        <div className="font--graduate">
-          <h2
-            style={{
-              fontVariationSettings: `"XOPQ" ${XOPQ}, "XTRA" ${XTRA}, "OPSZ" ${OPSZ}, "GRAD" ${GRAD}, "YTRA" ${YTRA}, "CNTR" ${CNTR}, "YOPQ" ${YOPQ}, "SERF" ${SERF}, "YTAS" ${YTAS}, "YTLC" ${YTLC}, "YTDE" ${YTDE}, "SELE" ${SELE}`,
-            }}
-          >
-            Graduate
-          </h2>
-
-          <h2 className="fvs--wght">Bold text heading and more blabla</h2>
-        </div>
+        </p> */}
 
         <h3>Font: Source sans</h3>
         <div className="font--source">
           <h2 style={{ fontVariationSettings: `"wght" ${wght200900}` }}>
-            Bold text heading and more blabla
+            Source sans with weight bound to the x-coordinate
           </h2>
 
-          <h2 className="fvs--wght">Bold text heading and more blabla</h2>
+          <h2 className="fvs--wght">This is controlled by a CSS variable</h2>
         </div>
 
-        <h3>Font: Recursive: not working??</h3>
+        <h3>Font: Recursive</h3>
         <div className="font--recursive">
-          <h2
-            style={{ fontVariationSettings: `"wght" ${map(normalizedCoords.x, 0, 1, 300, 900)}` }}
-          >
-            Bold text heading and more blabla
-          </h2>
           <h2
             className="slanted"
             style={{
-              fontVariationSettings: `"MONO" 0.19, "XPRN" 0.96, "wght" 900, "slnt" 0, "ital" 0.5`,
+              fontVariationSettings: `"MONO" ${settingsRecursive.MONO}`,
             }}
           >
-            Slanted text heading and more blabla
+            Recursive with MONO axes bound to the x-coordinate
           </h2>
-          <h2 className="fvs--wght">Monospace text heading and more blabla</h2>
+
+          <h2
+            className="slanted"
+            style={{
+              fontVariationSettings: `"XPRN" ${settingsRecursive.XPRN}`,
+            }}
+          >
+            Recursive with XPRN axes bound to the x-coordinate
+          </h2>
+
+          <h2
+            className="slanted"
+            style={{
+              fontVariationSettings: `"wght" ${settingsRecursive.WGHT}`,
+            }}
+          >
+            Recursive with WGHT axes bound to the x-coordinate
+          </h2>
+
+          <h2
+            className="slanted"
+            style={{
+              fontVariationSettings: `"slnt" ${settingsRecursive.SLNT}`,
+            }}
+          >
+            Recursive with SLNT axes bound to the x-coordinate.
+            <br />
+            <small>(Not sure about the difference of slant and italic)</small>
+          </h2>
+
+          <h2
+            className="slanted"
+            style={{
+              fontVariationSettings: `"ital" ${settingsRecursive.ITAL}`,
+            }}
+          >
+            Recursive with ITAL axes bound to the x-coordinate.
+            <br />
+            <small>(Strangely it's called the italic axes, but it's not that)</small>
+          </h2>
         </div>
       </div>
     </Layout>

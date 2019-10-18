@@ -4,6 +4,4 @@
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
 
-// font
 require('typeface-source-sans-variable')
-require('typeface-graduate')

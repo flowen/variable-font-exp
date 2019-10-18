@@ -11866,11 +11866,6 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typeface-graduate@^0.0.72:
-  version "0.0.72"
-  resolved "https://registry.yarnpkg.com/typeface-graduate/-/typeface-graduate-0.0.72.tgz#c4bf0efa5bab385a3e81ad776efedf6c3f751d20"
-  integrity sha512-gPeA3BfH2+6g6LYAU5pf5yHC0CJHu9OS6mNJg2ZOAC9zd/p8fGSbPkHizUZLQ1tbbXDFX6spFFgNdnIzSzRg4g==
-
 typeface-source-sans-variable@^3.0.6:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/typeface-source-sans-variable/-/typeface-source-sans-variable-3.0.6.tgz#a97830556c77d98d59ba2651bc12b4f2603c834a"
