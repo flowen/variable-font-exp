@@ -6,9 +6,9 @@
     font-stretch: normal;
     font-style: normal;
     font-weight: 300 900;
-    src: local('Recursive Mono Casual B'),
-      url('/src/assets/fonts/rec-mono_xprn_wght_slnt_ital--2019_09_30.woff2')
-        format('woff2-variations');
+    //src: local('Recursive Mono Casual B'),
+    src: url('../../../static/fonts/rec-mono_xprn_wght_slnt_ital--2019_09_30--subset-0020_007F.woff2')
+      format('woff2-variations');
   }
 }
 
