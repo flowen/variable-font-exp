@@ -7,7 +7,7 @@
   "dependencies": {
     "@react-hook/mouse-position": "^1.0.3",
     "css-mqpacker": "^7.0.0",
-    "gatsby": "^2.15.31",
+    "gatsby": "^2.32.13",
     "gatsby-cli": "^2.8.2",
     "gatsby-image": "^2.2.24",
     "gatsby-plugin-manifest": "^2.2.20",
